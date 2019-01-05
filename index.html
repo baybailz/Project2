@@ -25,6 +25,15 @@
       <h1>Wildfires in United States</h1>
     </div>
     <div class="container">
+      <!-- Map -->
+      <div id=fire-map class="col-lg-12">
+        <!-- map example for template testing -->
+        <img src="static/img/map-fire-freq.jpg">
+
+      </div>
+
+
+      <!-- Table/Data -->
       <div class="row margin-top-50">
         <div class="col-md-2">
           <aside class="filters">
@@ -36,7 +45,7 @@
                     <ul class="list-group" id="filters">
                       <li class="filter list-group-item">
                         <label for="date">Enter a Date</label>
-                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
+                        <input class="form-control" id="datetime" type="text" placeholder="06/30/2015">
                       </li>
                     </ul>
                   </div>
@@ -46,6 +55,7 @@
             </div>
           </aside>
         </div>
+
         <div class="col-md-10">
           <div id="table-area" class="">
             <table id="fire-table" class="table table-striped">

@@ -35,7 +35,7 @@ body {
   bottom: 0;
   left: 0;
   padding: 5px;
-  background: #1b3146;
+  background: #233237;
 }
 
 .navbar {
@@ -43,10 +43,10 @@ body {
   margin: 0;
   font-variant: small-caps;
   text-shadow: 2px 2px 4px #000000;
-  background: red;
+  background: #984B43;
 }
 
-/* This CSS styles the ufo icon in the navbar */
+/* This CSS styles the fire icon in the navbar */
 .nav-fire {
   position: absolute;
   bottom: 5px;
@@ -56,7 +56,7 @@ body {
 }
 
 /* Adding styles to the aside and filter form */
-.ufo-form {
+.fire-form {
   margin-top: 50px;
 }
 
@@ -97,11 +97,11 @@ select {
 /* The styles for the parallax */
 .hero {
   position: relative;
-  height: 500px;
+  height: 600px;
   padding: 20px;
   margin: 0;
   background: black;
-  background-image: url("static/img/matt-howard-451737-unsplash.jpg");
+  background-image: url("../img/matt-howard-451737-unsplash.jpg");
   background-attachment: fixed;
   background-position: bottom center;
   background-size: cover;
@@ -157,7 +157,7 @@ select {
   #table-area tr td:first-child {
     font-size: 1.8em;
     font-weight: bold;
-    background: #1b3146;
+    background: #233237;
   }
 
   #table-area tr td:last-child {
