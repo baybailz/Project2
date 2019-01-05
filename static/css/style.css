@@ -76,6 +76,13 @@ select {
   outline: none;
 }
 
+#fire-map {
+  padding: 20px;
+  /* position: absolute; */
+
+
+}
+
 #table-area th {
   text-align: center;
 }
