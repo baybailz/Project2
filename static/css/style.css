@@ -46,14 +46,14 @@ body {
   background: #984B43;
 }
 
-/* This CSS styles the fire icon in the navbar */
+/* This CSS styles the fire icon in the navbar
 .nav-fire {
   position: absolute;
   bottom: 5px;
   left:225px;
   width: 35px;
   color: white;
-}
+} */
 
 /* Adding styles to the aside and filter form */
 .fire-form {
@@ -108,7 +108,7 @@ select {
   padding: 20px;
   margin: 0;
   background: black;
-  background-image: url("../img/matt-howard-451737-unsplash.jpg");
+  background-image: url("../img/loop_wildfire.gif");
   background-attachment: fixed;
   background-position: bottom center;
   background-size: cover;
