@@ -8,14 +8,14 @@ body {
   height: 100%;
   padding: 1;
   margin: 1;
-  background-color: #233237;
+  background-color: #000000;
   /* background-color: white; */
   text
 }
 
 footer {
   font-variant: small-caps;
-  text-shadow: 2px 2px 4px #000000;
+  /* text-shadow: 2px 2px 4px white; */
 }
 
 /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
