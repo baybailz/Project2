@@ -1,128 +1,208 @@
-// function buildMetadata(sample) {
+function buildMetadata(year) {
 
-//     // apply d3.json to dataset to retrieve selected sample from dropdown.
-//     d3.json(`/metadata/${sample}`).then(function(s) {
-//       // console.log(Object.entries(s))
+    console.log("I am inside build metadata");
+    // @TODO: Complete the following function that builds the metadata panel
   
-//       // create variable that connects to metadata section of page and stores metadata for sample
-//       var info = d3.select("#sample-metadata");
+    d3.json(`/metadata/${year}`).then(function(d) {
+      // this would return a json
+      // console.log(d)
+      // this would return an array of 7 lists 
+      // console.log(Object.entries(d));
   
-//       // store sample entries in variable.
-//       metaD = Object.entries(s);
+      var PANEL = d3.select("#sample-metadata");
   
-//       // clear out the sample info panel so that it will load new sample data.
-//       info.html("")
+      PANEL.html("");
   
-//       // Now select h6 tags in index file and use 'enter' method to append and return 
-//       // sample metadata on the page in the information section
-//       info.selectAll("h6")
-//         .data(metaD)
-//         .enter()
-//         .append("h6")
-//         .text(function(s) {
-//         return`${s[0]}: ${s[1]}`;
-//       });
-//     ;})
-//   }
+      // console.log(mData);
+      // console.log('I am in between mData and Panel')
+      // console.log(PANEL)
+      // console.log;
   
-//   function buildCharts(sample) {
-//     // @TODO: Use `d3.json` to fetch the sample data for the plots
-//     d3.json(`/samples/${sample}`).then(function(s) {
-//       var ids = s.otu_ids
-//       var values = s.sample_values
-//       var labels = s.otu_labels
+      // console.log("this here immediately is the mData")
+      // console.log(mData)
   
-//       // console.log(labels);
+      // + ", " + d["Cumulative Days of Buring"]; 
   
-//       // @TODO: Build a Bubble Chart using the sample data
-//       // define the trace variable for the bubble plot.
-//       var bubbleTrace = {
-//         x: ids,
-//         y: values,
-//         mode: "markers",
-//         marker: {
-//           size: values,
-//           color: ids
-//         }
-//       };
+      PANEL.selectAll("h6").data(d).enter().append("h6")
+        .text(function(d) { return `
+          Acres Burned: ${d["Acres_Burned"]} 
+          Cumulative Days of Burning: ${d["Cumulative_Days_of_Burning"]}
+          Number of Fires: ${d["Number_of_Fires"]}
+          `}); 
   
-//       // convert trace variable to data variable for Plotly.
-//       var bubbleData = [bubbleTrace];
+    });
   
-//       var bubbleLayout = {
-//         xaxis: {title: "ID"}
-//       };
   
-//       Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+  
+  
+      // Use `.html("") to clear any existing metadata
+  
+      // Use `Object.entries` to add each key and value pair to the panel
     
   
-//       // @TODO: Build a Pie Chart
-//       // HINT: You will need to use slice() to grab the top 10 sample_values,
-//       // otu_ids, and labels (10 each).
-//       // slice the data to get top 10 samples.
-//       var pieData = [{
-//         values: values.slice(0,10),
-//         labels: ids.slice(0,10),
-//         type: "pie"
-//       }];
+      // BONUS: Build the Gauge Chart
+      // buildGauge(data.WFREQ);
+  }
+   
+  function buildCharts(year) {
+  
+    console.log("I am inside build charts");
+  
+  
+    d3.json(`/years/${year}`).then((d) => {
+  
+      console.log(d)
+  
+  
+      var causes = []
+      var avgfiresize = []
+    
+      d.forEach(function(onefire) {
+        causes.push(onefire["Cause_Descr"]);
+        avgfiresize.push(onefire["Fire_Size"])
+      })
+  
+  
+      console.log(causes)
+      console.log(avgfiresize)
+  
+      // var acres = d.Fire_Size
+      // var fire_d = d[2][2]
+  
+      // console.log("Printing data")
+      // console.log(acres)
+      // console.log(fire_d)
       
-//       // convert trace variable to data variable for Plotly.
-//       // var pieData = [pieTrace];
+    
+    // "d" is the api return 
+    
+    var barTrace = {
+      x: causes,
+      y: avgfiresize,
+      type: "bar",
+      marker: {
+        color: 'rgb(228, 132, 5)'
+      }
+      };
   
-//       var pieLayout = {
-//         height: 600,
-//         width: 800
-//       };
-  
-//       Plotly.newPlot("pie", pieData, pieLayout);
-//     })
-//   }
-  
-  
-//     console.log("I'm inside buildCharts");
-  
-//     // var sliced = sample.slice(0,10);
-  
-//     // @TODO: Use `d3.json` to fetch the sample data for the plots
-//   //   d3.json(sample).then(function(sliced) {
-//   //     var data = [sliced];
-//   //     var layout = {
-//   //       height: 600,
-//   //       width: 800
-//   //     };
-//   //     Plotly.plot("pie", data, layout);
-//   //   });
-//   //   ;})
+    var barData = [barTrace]
+    
+    var barLayout = {
+      title: "Cause of Fires",
+      xaxis: {title: "Cause of Fire"},
+      yaxis: {title: "Average Acres Burned"}
+    };
+    Plotly.newPlot("bar", barData, barLayout)
+  });
   
   
-//   function init() {
-//     // Grab a reference to the dropdown select element
-//     var selector = d3.select("#selDataset");
+    d3.json(`/bigfires/${year}`).then((d) => {
+  
+      console.log(d)
+    
+      var doy = []
+      var topfires = []
+      var name = []
+      var desired_maximum_marker_size = 100;
+    
+      d.forEach(function(onetop) {
+        doy.push(onetop["Discovery_DOY"]);
+        topfires.push(onetop["Fire_Size"]);
+        name.push(onetop["Fire_name"])
+      })
+    
+    console.log(doy)
+    console.log(topfires)
+  
+    var bubbleTrace = {
+      x: doy,
+      y: topfires,
+      mode: "markers",
+      text: name,
+      marker: {
+        size: topfires,
+        sizemode: 'area',
+        sizeref: 2.0 * Math.max(...topfires) / (desired_maximum_marker_size**2),
+        color: topfires,
+        colorscale: "'YIOrRd'"
+      }
+    }; 
+    
+    var bubbleData = [bubbleTrace]
+  
+    var bubbleLayout = {
+      title: "Top Ten Largest Fires",
+      xaxis: {title: "Day of the Year"},
+      yaxis: {title: "Fire Size"}
+    };
+    
+    
+    Plotly.newPlot("bubble", bubbleData, bubbleLayout)
+    
+  
+    // var pieTrace = {
+    //   values: fire_d,
+    //   labels: fire_d,
+    //   marker: {
+    //     colorscale: "Earth"
+    //   },
+    //   type: "pie"
+    // }; 
+  
+    // var pieLayout = {
+  
+    // };
+  
+    // var pieData = [pieTrace] 
+  
+    // Plotly.newPlot("pie", pieData, pieLayout)
+  
+  })
+  
+      // @TODO: Build a Bubble Chart using the sample data
+  
+      // @TODO: Build a Pie Chart
+      // HINT: You will need to use slice() to grab the top 10 sample_values,
+      // otu_ids, and labels (10 each).
+  }
+  
+  function init() {
+  
+    console.log("I am inside init");
+  
+    // Grab a reference to the dropdown select element
+    var selector = d3.select("#selDataset");
+  
+    // Use the list of sample names to populate the select options
+    d3.json("/years").then((fireYears) => {
   
   
-//     // Use the list of sample names to populate the select options
-//     d3.json("/names").then((sampleNames) => {
-//       sampleNames.forEach((sample) => {
-//         selector
-//           .append("option")
-//           .text(sample)
-//           .property("value", sample);
-//       });
+      fireYears.forEach((d) => {
+        
+        selector
+          .append("option")
+          .text(d)
+          .property("value", d);
+      });
   
-//       // Use the first sample from the list to build the initial plots
-//       const firstSample = sampleNames[0];
+      // Use the first sample from the list to build the initial plots
+      const firstYear = fireYears[0];
   
-//       buildCharts(firstSample);
-//       buildMetadata(firstSample);
-//     });
-//   }
   
-//   function optionChanged(newSample) {
-//     console.log(newSample)
-//     // Fetch new data each time a new sample is selected
-//     buildCharts(newSample);
-//     buildMetadata(newSample);
-//   }
+      buildMetadata(firstYear);
+      buildCharts(firstYear);
   
-//   // Initialize the dashboard
-//   init();
+    });
+  }
+  
+  function optionChanged(newYear) {
+  
+    console.log("I am inside option changed");
+    console.log(newYear)
+    // Fetch new data each time a new sample is selected
+    buildCharts(newYear);
+    buildMetadata(newYear);
+  }
+  
+  // Initialize the dashboard
+  init();
