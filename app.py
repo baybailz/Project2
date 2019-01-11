@@ -15,8 +15,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///Resources/Fires.sqlite', echo=True)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Resources/Fires.sqlite"
+engine = create_engine('sqlite:///Fires.sqlite', echo=True)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Fires.sqlite"
 db = SQLAlchemy(app)
 
 Base = automap_base()
@@ -26,28 +26,31 @@ Base.prepare(db.engine, reflect=True)
 session = Session(engine)
 
 Fire = Base.classes.fire
+# Years = Base.classes.Fire_year
 
 @app.route("/")
 def index():
     """Return the homepage."""
     return render_template("index.html")
 
+
 @app.route("/years")
 def years():
     """Return a list years."""
 
     # Use Pandas to perform the sql query
-    sel_year = [
-    Fire.Fire_year]
+    results = db.session.query(Fire.Fire_year).\
+        order_by(Fire.Fire_year.desc())
     
-    results_year = db.session.query(*sel_year).all()
-    df_distinct_year = pd.DataFrame(results_year)
-    years = df_distinct_year["Fire_year"].unique()
-    print(years)
+    year = []
+    for result in results:
+        year.append({
+            "year": result[0]
+        })
+    # print(year)
+    return jsonify(year)
 
-    return jsonify(years)
-
-@app.route("/metadata/<year>")
+@app.route("/fire_metadata/<year>")
 def fire_metadata(year):
     
     sel = [
@@ -68,12 +71,14 @@ def fire_metadata(year):
 
 @app.route("/years/<year>")
 def year(year):
-    """Return fire name, fire_DOY, and acres damaged."""
+    """Return fire name, fire_DOY, acres damaged, and lat and long."""
     sel = [
     Fire.Fire_name,
     Fire.Fire_year,
     Fire.Fire_Size,
-    Fire.Discovery_DOY]
+    Fire.Discovery_DOY,
+    Fire.Lat,
+    Fire.Long]
     
     results = db.session.query(*sel).filter(Fire.Fire_year == year).all()
     df_yearly = pd.DataFrame(results)
@@ -81,12 +86,14 @@ def year(year):
 
     fire_data = {}
     # Format the data to send as json
-    fire_data["Fire Name"] = df_yearly['Fire_name']
+    fire_data["Fire_Name"] = df_yearly['Fire_name']
     fire_data["Fire_size"] = df_yearly['Fire_Size']
     fire_data["Discovery_DOY"] = df_yearly['Discovery_DOY']
+    fire_data["Lat"] = df_yearly["Lat"]
+    fire_data["Long"] = df_yearly["Long"]
 
     return jsonify(fire_data)
 
 
 if __name__ == "__main__": 
-    app.run()
+    app.run(debug=True)
