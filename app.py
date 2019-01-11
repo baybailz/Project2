@@ -16,7 +16,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 engine = create_engine('sqlite:///Fires.sqlite', echo=True)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///fires.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Fires.sqlite"
 db = SQLAlchemy(app)
 
 Base = automap_base()
@@ -26,7 +26,7 @@ Base.prepare(db.engine, reflect=True)
 session = Session(engine)
 
 Fire = Base.classes.fire
-years = Base.classes.years
+years = Base.classes.test
 
 @app.route("/")
 def index():
@@ -91,5 +91,5 @@ def years():
 #     return jsonify(fire_data)
 
 
-# if __name__ == "__main__": 
-#     app.run()
+if __name__ == "__main__": 
+    app.run(debug=True)
