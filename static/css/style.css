@@ -10,7 +10,6 @@ body {
   margin: 1;
   background-color: #000000;
   /* background-color: white; */
-  text
 }
 
 footer {
@@ -65,10 +64,9 @@ select {
 }
 
 #fire-map {
+  height: 600px;
   padding: 20px;
-  /* position: absolute; */
   position: center;
-
 }
 
 #table-area th {

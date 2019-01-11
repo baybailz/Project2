@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Wildfires</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap stylesheet -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="../static/css/style.css">
+
+<!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Wildfires in United States
+            <img class="nav-fire" src="">
+          </a>
+        </div>
+      </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="Overview.html">Overview</a></li>
+            <li><a href="Data.html">Data</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Analytics <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="analysis1.html">Analysis 1</a></li>
+                <li><a href="analysis2.html">Analysis 2</a></li>
+                <li><a href="analysis3.html">Analysis 3</a></li>
+                <li><a href="analysis4.html">Analysis 4</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+  </nav>
+
+  <!-- Hero section with fire or gif image -->
+    <div class="hero text-center">
+      <h1>Wildfires in United States</h1>
+    </div>
+
+<!-- Main body of page. -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Beginning of Side-Bar code -->
+        <!-- <div class="col-md-2">
+          <ul class="nav nav-sidebar">
+            <li class="active">
+              <a href="#">Overview
+              <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div> -->
+        
+        
+        <!-- Beginning of main section code to coincide with side-bar -->
+        <!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> -->
+
+
+<!-- Map Code -->
+          <!-- Filter of Maps -->
+          <!-- <div class="col-md-2">
+            <div class="well mapFilter" >
+              <h5>Select Map</h5>
+              <select id="selMap" onchange="optionChanged(this.value)"></select>
+            </div> -->
+          </div>
+          <div id=fire-map class="col-lg-12">
+            <!-- map example for template testing -->
+            <!-- <img src="../static/img/map-fire-freq.jpg"> -->
+
+          </div>
+
+
+      </div>
+<!-- Table/Data -->
+      <!-- <div class="row margin-top-50">
+        <div class="col-md-2">
+          <aside class="filters">
+            <div class="panel panel-default">
+              <div class="panel-heading">Filter Search</div>
+              <div class="panel-body">
+                <form>
+                  <div class="form-group">
+                    <ul class="list-group" id="filters">
+                      <li class="filter list-group-item">
+                        <label for="date">Enter a Date</label>
+                        <input class="form-control" id="datetime" type="text" placeholder="06/30/2015">
+                      </li>
+                    </ul>
+                  </div>
+                  <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button>
+                </form>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="col-md-10">
+          <div id="table-area" class="">
+            <table id="fire-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="table-head">Date</th>
+                  <th class="table-head">City</th>
+                  <th class="table-head">State</th>
+                  <th class="table-head">Area-burned</th>
+                  <th class="table-head">Shape</th> -->
+                  <!-- <th class="table-head">Duration</th> -->
+                  <!-- <th class="table-head">Comments</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div> -->
+      
+
+        <!-- Footer code -->
+        <footer>
+          <div class="inner">
+            <p class="pull-right">
+              <a href="index.html">Back to top</a>
+            </p>
+            <p>
+              -- US Wildfire Analysis compiled by B. Thompson, M. Gray, and S. Assegid in January 2019 with UNCC Bootcamp.
+            </p>
+          </div>
+        </footer>
+      </div>
+      
+    </div>
+    <!-- /. end of container -->
+  </div>
+
+<!-- Bootstrap and JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+<!-- API Key -->
+<script type="text/javascript" src="../static/js/config.js"></script>
+<!-- Our JavaScript -->
+<script type="text/javascript" src="../static/js/logic.js"></script>
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>
