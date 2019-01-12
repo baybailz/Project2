@@ -3,18 +3,18 @@
   font-family: Ubuntu, sans-serif;
 }
 
-html,
-body {
+html, body {
   height: 100%;
   padding: 1;
   margin: 1;
   background-color: #000000;
-  /* background-color: white; */
+  text
 }
 
 footer {
   font-variant: small-caps;
-  /* text-shadow: 2px 2px 4px white; */
+  color: white;
+  text-shadow: 2px 2px 4px white;
 }
 
 /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
@@ -25,23 +25,28 @@ footer {
   overflow: auto;
 }
 
-.mapFilter {
+
+/* .mapFilter {
   position: relative;
   padding: 5px;
   margin: 10px;
   font-variant: small-caps;
   color: #233237;
   text-shadow: 2px 2px 4px #000000;
-}
+} */
 
 .navbar {
   padding: 5px;
   margin: 0;
   font-variant: small-caps;
+  /* color: white; */
   text-shadow: 2px 2px 4px #000000;
   background: #984B43;
 }
 
+.context {
+  color: #8e979f;
+}
 /* Adding styles to the aside and filter form */
 .fire-form {
   margin-top: 50px;
@@ -63,10 +68,12 @@ select {
   outline: none;
 }
 
-#fire-map {
-  height: 600px;
+#mydiv {
+  /* height: 600px; */
   padding: 20px;
+  /* position: absolute; */
   position: center;
+
 }
 
 #table-area th {
@@ -91,9 +98,10 @@ select {
 .hero {
   position: relative;
   height: 600px;
-  padding: 20px;
+  padding: 1px;
   /* padding-bottom: 400px; */
   margin: 0;
+  color: #8e979f;
   background: black;
   background-image: url("../img/loop_wildfire.gif");
   background-attachment: fixed;
