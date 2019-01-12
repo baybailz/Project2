@@ -148,6 +148,25 @@ def coords(year):
 
     return jsonify(df_coord_dict)
 
+@app.route("/bubble")
+def bubble():
+    """go to bubble chart."""
+    return render_template("bubble.html")
 
+@app.route("/map")
+def map():
+    """go to map."""
+    return render_template("map.html")
+
+@app.route("/bar")
+def bar():
+    """go to bar chart."""
+    return render_template("bar.html")
+
+@app.route("/overview")
+def overview():
+    """go to overview page."""
+    return render_template("overview.html")
+    
 if __name__ == "__main__": 
     app.run()

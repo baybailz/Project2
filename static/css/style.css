@@ -7,14 +7,14 @@ html, body {
   height: 100%;
   padding: 1;
   margin: 1;
-  background-color: #000000;
+  background-color: #C0C0C0;
   text
 }
 
 footer {
   font-variant: small-caps;
-  color: white;
-  text-shadow: 2px 2px 4px white;
+  /* color: white; */
+  text-shadow: 2px 2px 4px #686868;
 }
 
 /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
@@ -99,7 +99,7 @@ select {
   /* padding-bottom: 400px; */
   margin: 0;
   color: #8e979f;
-  background: black;
+  background: #C0C0C0;
   background-image: url("../img/loop_wildfire.gif");
   background-attachment: fixed;
   background-position: bottom center;
